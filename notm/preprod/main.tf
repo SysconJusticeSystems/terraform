@@ -1,8 +1,8 @@
 terraform {
     required_version = ">= 0.9.2"
     backend "azure" {
-        resource_group_name = "webops-preprod"
-        storage_account_name = "nomsstudiowebopspreprod"
+        resource_group_name = "webops-prod"
+        storage_account_name = "nomsstudiowebopsprod"
         container_name = "terraform"
         key = "notm-preprod.terraform.tfstate"
         arm_subscription_id = "c27cfedb-f5e9-45e6-9642-0fad1a5c94e7"
@@ -77,7 +77,7 @@ resource "azurerm_key_vault" "vault" {
         secret_permissions = ["get"]
     }
     access_policy {
-        object_id = "${var.azure_glenm_tfpreprod_oid}"
+        object_id = "${var.azure_glenm_tfprod_oid}"
         tenant_id = "${var.azure_tenant_id}"
         key_permissions = ["get"]
         secret_permissions = ["get", "list"]
@@ -200,7 +200,7 @@ resource "azurerm_template_deployment" "webapp-ssl" {
         name = "${azurerm_template_deployment.webapp.parameters.name}"
         hostname = "${azurerm_dns_cname_record.cname.name}.${azurerm_dns_cname_record.cname.zone_name}"
         keyVaultId = "${azurerm_key_vault.vault.id}"
-        keyVaultCertName = "csraDOTserviceDOThmppsDOTdsdDOTio"
+        keyVaultCertName = "notm-preprodDOTserviceDOThmppsDOTdsdDOTio"
         service = "${var.tags["Service"]}"
         environment = "${var.tags["Environment"]}"
     }
@@ -210,7 +210,7 @@ resource "azurerm_template_deployment" "webapp-ssl" {
 
 resource "azurerm_dns_cname_record" "cname" {
     name = "notm-preprod"
-    zone_name = "hmpps.dsd.io"
+    zone_name = "service.hmpps.dsd.io"
     resource_group_name = "webops-preprod"
     ttl = "300"
     record = "${var.app-name}.azurewebsites.net"

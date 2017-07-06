@@ -4,6 +4,3 @@ terraform.tfstate*
 *.tfplan
 graph.png
 node_modules/
-#IntelliJ specific files
-.idea
-*.iml
