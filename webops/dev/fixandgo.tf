@@ -11,7 +11,7 @@ resource "azurerm_template_deployment" "fng-collection" {
 }
 
 data "external" "fng-vault" {
-    program = ["node", "../../tools/keyvault-data.js"]
+    program = ["node", "../../tools/keyvault-data-cli-auth.js"]
     query {
         vault = "${azurerm_key_vault.vault.name}"
 

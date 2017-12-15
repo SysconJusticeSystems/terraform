@@ -35,6 +35,9 @@
         },
         "NOMIS_GW_KEY": {
             "type": "string"
+        },
+        "ENABLE_TEST_UTILS": {
+            "type": "bool"
         }
     },
     "resources": [
@@ -53,7 +56,8 @@
                 "APPINSIGHTS_INSTRUMENTATIONKEY": "[parameters('APPINSIGHTS_INSTRUMENTATIONKEY')]",
                 "NOMIS_API_URL": "[parameters('NOMIS_API_URL')]",
                 "NOMIS_GW_TOKEN": "[parameters('NOMIS_GW_TOKEN')]",
-                "NOMIS_GW_KEY": "[parameters('NOMIS_GW_KEY')]"
+                "NOMIS_GW_KEY": "[parameters('NOMIS_GW_KEY')]",
+                "ENABLE_TEST_UTILS": "[parameters('ENABLE_TEST_UTILS')]"
             }
         }
     ]

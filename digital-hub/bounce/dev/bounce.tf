@@ -62,7 +62,7 @@ resource "azurerm_virtual_machine" "hub-bounce-dev-vm" {
   location              = "ukwest"
   resource_group_name   = "${azurerm_resource_group.hub-bounce-dev.name}"
   network_interface_ids = ["${azurerm_network_interface.hub-bounce-dev-ni.id}"]
-  vm_size               = "Basic_A0"
+  vm_size               = "Basic_A3"
 
   storage_image_reference {
     publisher = "Canonical"
@@ -76,6 +76,15 @@ resource "azurerm_virtual_machine" "hub-bounce-dev-vm" {
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
+  }
+
+  storage_data_disk {
+    name              = "hub-bounce-dev-temp"
+    caching           = "None"
+    create_option     = "Attach"
+    managed_disk_type = "Standard_LRS"
+    lun               = 0
+    disk_size_gb      = "150"
   }
 
   os_profile {

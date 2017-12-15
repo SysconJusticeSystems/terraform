@@ -3,7 +3,8 @@ resource "azurerm_storage_account" "webops" {
   resource_group_name = "${azurerm_resource_group.group.name}"
   location = "${azurerm_resource_group.group.location}"
   account_kind = "BlobStorage"
-  account_type = "Standard_GRS"
+  account_tier = "Standard"
+  account_replication_type = "GRS"
   access_tier = "Hot"
   enable_blob_encryption = true
   tags {
